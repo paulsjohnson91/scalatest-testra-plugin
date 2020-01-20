@@ -3,19 +3,31 @@ package org.scalatest.tools
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
-import net.liftweb.json
 import org.scalatest._
 import org.scalatest.events._
-import scalaj.http._
+import scalaj.http.{HttpResponse, Http}
+import spray.json._
+import DefaultJsonProtocol._
+import org.slf4j._
 
-class JUnitReporter extends Reporter with App{
-  private var apiUrl = ""
-  private var project = ""
-  private var executionId=""
-  private var projectId = ""
+class JUnitReporter extends Reporter with App {
+  case class Project(
+      id: String,
+      name: String,
+      description: String,
+      projectType: String,
+      creationDate: Long
+  )
+  def log: Logger = LoggerFactory.getLogger(this.getClass())
+
+  var apiUrl = ""
+  var project = ""
+  var executionId = ""
+  var projectId = ""
   override def apply(event: Event): Unit = {
     event match {
-      case _: RunStarting =>
+      case e: RunStarting =>
+        log.info(e.configMap.get("testraApi").get)
         initialiseTestra
 
       case e: TestSucceeded =>
@@ -29,13 +41,20 @@ class JUnitReporter extends Reporter with App{
   }
 
   def initialiseTestra: Unit = {
-    apiUrl="http://localhost:8083/api/v1"
     project = "Companion Service"
-    val getProjUrl = apiUrl + "/projects/" + URLEncoder.encode(project, StandardCharsets.UTF_8.toString).replace("+", "%20");
-    val response: HttpResponse[String] = Http(getProjUrl).asString
-    val j = json.parse(response.body)
+    apiUrl = "http://localhost:8083/api/v1"
+    getProjectId
+  }
 
-    println(j)
+  def getProjectId: Unit = {
+    implicit val projectFormat: JsonFormat[Project] = jsonFormat5(Project)
+    val response: HttpResponse[String] = Http(
+      apiUrl + "/projects/" + URLEncoder
+        .encode(project, StandardCharsets.UTF_8.toString)
+        .replace("+", "%20")
+    ).asString
+    projectId = response.body.parseJson.convertTo[Project].id
+    log.info(s"Project ID $projectId found")
   }
 
 }

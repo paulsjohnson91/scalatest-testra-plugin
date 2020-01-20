@@ -11,7 +11,9 @@ lazy val root = (project in file("."))
     libraryDependencies += scalaTest,
     libraryDependencies += "org.pegdown" % "pegdown" % "1.6.0" % "test",
     libraryDependencies += "org.scalaj" %% "scalaj-http" % "2.4.2",
-    libraryDependencies += "net.liftweb" %% "lift-json" % "3.4.0",
+    // libraryDependencies += "net.liftweb" %% "lift-json" % "3.4.0",
+    libraryDependencies += "io.spray" %%  "spray-json" % "1.3.4", 
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
 
     Test / testOptions += Tests.Argument("-C", "org.scalatest.tools.JUnitReporter"),
     Test / testOptions += Tests.Argument("-DtestraApi=http://localhost:8083/api/v1"),
