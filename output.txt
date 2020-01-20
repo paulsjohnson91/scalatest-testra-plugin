@@ -1,0 +1,66 @@
+[0m[[0m[0minfo[0m] [0m[0mLoading settings for project scalatest-custom-reporter-example-build from metals.sbt ...[0m
+[0m[[0m[0minfo[0m] [0m[0mLoading project definition from /Users/psj03/IdeaProjects/scalatest-custom-reporter-example/project[0m
+[0m[[0m[0minfo[0m] [0m[0mLoading settings for project root from build.sbt ...[0m
+[0m[[0m[0minfo[0m] [0m[0mSet current project to scalatest-custom-reporter-example (in build file:/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/)[0m
+RunStarting(Ordinal(0, 0),0,Map(),None,None,None,pool-6-thread-1,1579263022071)
+
+
+SuiteStarting(Ordinal(0, 1),HelloSpec,example.HelloSpec,Some(example.HelloSpec),Some(IndentedText(HelloSpec:,HelloSpec,0)),Some(TopOfClass(example.HelloSpec)),None,None,pool-6-thread-1,1579263022236)
+
+
+ScopeOpened(Ordinal(0, 3),The Hello object,NameInfo(HelloSpec,example.HelloSpec,Some(example.HelloSpec),None),Some(IndentedText(The Hello object,The Hello object,0)),Some(LineInFile(13,HelloSpec.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),None,pool-6-thread-1-ScalaTest-running-HelloSpec,1579263022258)
+
+
+TestStarting(Ordinal(0, 5),HelloSpec,example.HelloSpec,Some(example.HelloSpec),The Hello object should say hello,should say hello,Some(MotionToSuppress),Some(LineInFile(13,HelloSpec.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(example.HelloSpec),None,pool-6-thread-1-ScalaTest-running-HelloSpec,1579263022262)
+
+
+TestSucceeded(Ordinal(0, 7),HelloSpec,example.HelloSpec,Some(example.HelloSpec),The Hello object should say hello,should say hello,Vector(),Some(13),Some(IndentedText(- should say hello,should say hello,1)),Some(LineInFile(13,HelloSpec.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(example.HelloSpec),None,pool-6-thread-1-ScalaTest-running-HelloSpec,1579263022275)
+
+
+TestStarting(Ordinal(0, 8),HelloSpec,example.HelloSpec,Some(example.HelloSpec),The Hello object should sing lullaby,should sing lullaby,Some(MotionToSuppress),Some(LineInFile(17,HelloSpec.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(example.HelloSpec),None,pool-6-thread-1-ScalaTest-running-HelloSpec,1579263022280)
+
+
+TestSucceeded(Ordinal(0, 9),HelloSpec,example.HelloSpec,Some(example.HelloSpec),The Hello object should sing lullaby,should sing lullaby,Vector(),Some(0),Some(IndentedText(- should sing lullaby,should sing lullaby,1)),Some(LineInFile(17,HelloSpec.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(example.HelloSpec),None,pool-6-thread-1-ScalaTest-running-HelloSpec,1579263022280)
+
+
+InfoProvided(Ordinal(0, 10),,Some(NameInfo(HelloSpec,example.HelloSpec,Some(example.HelloSpec),None)),None,Some(IndentedText(+ ,,1)),Some(LineInFile(10,HelloSpec.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(Map(The Hello object should say hello -> Set(Slow), The Hello object should sing lullaby -> Set(Unreliable, Slow))),pool-6-thread-1-ScalaTest-running-HelloSpec,1579263022282)
+
+
+Map(The Hello object should say hello -> Set(Slow), The Hello object should sing lullaby -> Set(Unreliable, Slow))
+ScopeClosed(Ordinal(0, 11),The Hello object,NameInfo(HelloSpec,example.HelloSpec,Some(example.HelloSpec),None),Some(MotionToSuppress),Some(LineInFile(13,HelloSpec.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),None,pool-6-thread-1-ScalaTest-running-HelloSpec,1579263022283)
+
+
+SuiteCompleted(Ordinal(0, 18),HelloSpec,example.HelloSpec,Some(example.HelloSpec),Some(72),Some(MotionToSuppress),Some(TopOfClass(example.HelloSpec)),None,None,pool-6-thread-1,1579263022300)
+
+
+SuiteStarting(Ordinal(0, 2),WordSpecTests,WordSpecTests,Some(WordSpecTests),Some(IndentedText(WordSpecTests:,WordSpecTests,0)),Some(TopOfClass(WordSpecTests)),None,None,pool-6-thread-7,1579263022236)
+
+
+ScopeOpened(Ordinal(0, 4),Stack check feature,NameInfo(WordSpecTests,WordSpecTests,Some(WordSpecTests),None),Some(IndentedText(Stack check feature,Stack check feature,0)),Some(LineInFile(13,WordSpecTests.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),None,pool-6-thread-7-ScalaTest-running-WordSpecTests,1579263022258)
+
+
+TestStarting(Ordinal(0, 6),WordSpecTests,WordSpecTests,Some(WordSpecTests),Stack check feature should stack should pop last,stack should pop last,Some(MotionToSuppress),Some(LineInFile(14,WordSpecTests.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(WordSpecTests),None,pool-6-thread-7-ScalaTest-running-WordSpecTests,1579263022262)
+
+
+TestSucceeded(Ordinal(0, 14),WordSpecTests,WordSpecTests,Some(WordSpecTests),Stack check feature should stack should pop last,stack should pop last,Vector(InfoProvided(Ordinal(0, 12),Given I create a stack with two ints,Some(NameInfo(WordSpecTests,WordSpecTests,Some(WordSpecTests),Some(Stack check feature should stack should pop last))),None,Some(IndentedText(  + Given I create a stack with two ints,Given I create a stack with two ints,2)),Some(LineInFile(15,WordSpecTests.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),None,pool-6-thread-7-ScalaTest-running-WordSpecTests,1579263022284), InfoProvided(Ordinal(0, 13),Then The second value is popped first,Some(NameInfo(WordSpecTests,WordSpecTests,Some(WordSpecTests),Some(Stack check feature should stack should pop last))),None,Some(IndentedText(  + Then The second value is popped first,Then The second value is popped first,2)),Some(LineInFile(19,WordSpecTests.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),None,pool-6-thread-7-ScalaTest-running-WordSpecTests,1579263022284)),Some(24),Some(IndentedText(- should stack should pop last,should stack should pop last,1)),Some(LineInFile(14,WordSpecTests.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(WordSpecTests),None,pool-6-thread-7-ScalaTest-running-WordSpecTests,1579263022285)
+
+
+ScopeClosed(Ordinal(0, 15),Stack check feature,NameInfo(WordSpecTests,WordSpecTests,Some(WordSpecTests),None),Some(MotionToSuppress),Some(LineInFile(13,WordSpecTests.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),None,pool-6-thread-7-ScalaTest-running-WordSpecTests,1579263022285)
+
+
+InfoProvided(Ordinal(0, 16),,Some(NameInfo(WordSpecTests,WordSpecTests,Some(WordSpecTests),None)),None,Some(IndentedText(+ ,,0)),Some(LineInFile(7,WordSpecTests.scala,Some(Please set the environment variable SCALACTIC_FILL_FILE_PATHNAMES to yes at compile time to enable this feature.))),Some(Map(Stack check feature should stack should pop last -> Set(MyLovelyTags))),pool-6-thread-7-ScalaTest-running-WordSpecTests,1579263022296)
+
+
+Map(Stack check feature should stack should pop last -> Set(MyLovelyTags))
+SuiteCompleted(Ordinal(0, 17),WordSpecTests,WordSpecTests,Some(WordSpecTests),Some(77),Some(MotionToSuppress),Some(TopOfClass(WordSpecTests)),None,None,pool-6-thread-7,1579263022300)
+
+
+RunCompleted(Ordinal(0, 19),Some(388),Some(Summary(3,0,0,0,0,2,0,0)),None,None,None,pool-6-thread-1,1579263022444)
+
+
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 388 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 3[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 2, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 3, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 2 s, completed 17-Jan-2020 12:10:22[0m

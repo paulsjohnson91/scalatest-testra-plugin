@@ -1,0 +1,325 @@
+{
+    "version": "1.1.2",
+    "project": {
+        "name": "root-test",
+        "directory": "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example",
+        "workspaceDir": "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example",
+        "sources": [
+            "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/src/test/scala-2.12",
+            "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/src/test/scala",
+            "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/src/test/java",
+            "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/target/scala-2.12/src_managed/test"
+        ],
+        "dependencies": [
+            "root"
+        ],
+        "classpath": [
+            "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/.bloop/root/scala-2.12/classes",
+            "/Users/psj03/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar",
+            "/Users/psj03/.ivy2/cache/org.scalatest/scalatest_2.12/bundles/scalatest_2.12-3.0.5.jar",
+            "/Users/psj03/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.5.jar",
+            "/Users/psj03/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.8.jar",
+            "/Users/psj03/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar",
+            "/Users/psj03/.ivy2/cache/org.pegdown/pegdown/jars/pegdown-1.6.0.jar",
+            "/Users/psj03/.ivy2/cache/org.parboiled/parboiled-java/jars/parboiled-java-1.1.7.jar",
+            "/Users/psj03/.ivy2/cache/org.parboiled/parboiled-core/jars/parboiled-core-1.1.7.jar",
+            "/Users/psj03/.ivy2/cache/org.ow2.asm/asm/jars/asm-5.0.3.jar",
+            "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-tree/jars/asm-tree-5.0.3.jar",
+            "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-analysis/jars/asm-analysis-5.0.3.jar",
+            "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-util/jars/asm-util-5.0.3.jar"
+        ],
+        "out": "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/.bloop/root",
+        "classesDir": "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/.bloop/root/scala-2.12/test-classes",
+        "resources": [
+            "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/src/test/resources",
+            "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/target/scala-2.12/resource_managed/test"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.12.8",
+            "options": [
+                
+            ],
+            "jars": [
+                "/Users/psj03/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.12.8.jar",
+                "/Users/psj03/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar",
+                "/Users/psj03/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.8.jar",
+                "/Users/psj03/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar",
+                "/Users/psj03/.ivy2/cache/jline/jline/jars/jline-2.14.6.jar"
+            ],
+            "analysis": "/Users/psj03/IdeaProjects/scalatest-custom-reporter-example/target/streams/test/bloopAnalysisOut/$global/streams/inc_compile_2.12.zip",
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
+            }
+        },
+        "java": {
+            "options": [
+                
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-h",
+                            "target/test-reports"
+                        ],
+                        "framework": {
+                            "names": [
+                                "org.scalatest.tools.Framework",
+                                "org.scalatest.tools.ScalaTestFramework"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/Users/psj03/.jabba/jdk/zulu@1.8.232/Contents/Home/jre",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.8",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/Users/psj03/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.8-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scalatest",
+                    "name": "scalatest_2.12",
+                    "version": "3.0.5",
+                    "artifacts": [
+                        {
+                            "name": "scalatest_2.12",
+                            "path": "/Users/psj03/.ivy2/cache/org.scalatest/scalatest_2.12/bundles/scalatest_2.12-3.0.5.jar"
+                        },
+                        {
+                            "name": "scalatest_2.12",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.scalatest/scalatest_2.12/srcs/scalatest_2.12-3.0.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scalactic",
+                    "name": "scalactic_2.12",
+                    "version": "3.0.5",
+                    "artifacts": [
+                        {
+                            "name": "scalactic_2.12",
+                            "path": "/Users/psj03/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.5.jar"
+                        },
+                        {
+                            "name": "scalactic_2.12",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.scalactic/scalactic_2.12/srcs/scalactic_2.12-3.0.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-reflect",
+                    "version": "2.12.8",
+                    "artifacts": [
+                        {
+                            "name": "scala-reflect",
+                            "path": "/Users/psj03/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.8.jar"
+                        },
+                        {
+                            "name": "scala-reflect",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.12.8-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-xml_2.12",
+                    "version": "1.0.6",
+                    "artifacts": [
+                        {
+                            "name": "scala-xml_2.12",
+                            "path": "/Users/psj03/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar"
+                        },
+                        {
+                            "name": "scala-xml_2.12",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/srcs/scala-xml_2.12-1.0.6-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.pegdown",
+                    "name": "pegdown",
+                    "version": "1.6.0",
+                    "artifacts": [
+                        {
+                            "name": "pegdown",
+                            "path": "/Users/psj03/.ivy2/cache/org.pegdown/pegdown/jars/pegdown-1.6.0.jar"
+                        },
+                        {
+                            "name": "pegdown",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.pegdown/pegdown/srcs/pegdown-1.6.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.parboiled",
+                    "name": "parboiled-java",
+                    "version": "1.1.7",
+                    "artifacts": [
+                        {
+                            "name": "parboiled-java",
+                            "path": "/Users/psj03/.ivy2/cache/org.parboiled/parboiled-java/jars/parboiled-java-1.1.7.jar"
+                        },
+                        {
+                            "name": "parboiled-java",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.parboiled/parboiled-java/srcs/parboiled-java-1.1.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.parboiled",
+                    "name": "parboiled-core",
+                    "version": "1.1.7",
+                    "artifacts": [
+                        {
+                            "name": "parboiled-core",
+                            "path": "/Users/psj03/.ivy2/cache/org.parboiled/parboiled-core/jars/parboiled-core-1.1.7.jar"
+                        },
+                        {
+                            "name": "parboiled-core",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.parboiled/parboiled-core/srcs/parboiled-core-1.1.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.ow2.asm",
+                    "name": "asm",
+                    "version": "5.0.3",
+                    "artifacts": [
+                        {
+                            "name": "asm",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm/jars/asm-5.0.3.jar"
+                        },
+                        {
+                            "name": "asm",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm/srcs/asm-5.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.ow2.asm",
+                    "name": "asm-tree",
+                    "version": "5.0.3",
+                    "artifacts": [
+                        {
+                            "name": "asm-tree",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-tree/jars/asm-tree-5.0.3.jar"
+                        },
+                        {
+                            "name": "asm-tree",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-tree/srcs/asm-tree-5.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.ow2.asm",
+                    "name": "asm-analysis",
+                    "version": "5.0.3",
+                    "artifacts": [
+                        {
+                            "name": "asm-analysis",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-analysis/jars/asm-analysis-5.0.3.jar"
+                        },
+                        {
+                            "name": "asm-analysis",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-analysis/srcs/asm-analysis-5.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.ow2.asm",
+                    "name": "asm-util",
+                    "version": "5.0.3",
+                    "artifacts": [
+                        {
+                            "name": "asm-util",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-util/jars/asm-util-5.0.3.jar"
+                        },
+                        {
+                            "name": "asm-util",
+                            "classifier": "sources",
+                            "path": "/Users/psj03/.ivy2/cache/org.ow2.asm/asm-util/srcs/asm-util-5.0.3-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
