@@ -35,7 +35,7 @@ class JUnitReporter extends Reporter with App {
       featureDescription: String,
       name: String,
       tags: List[String],
-      steps: List[StepRequest]
+      steps: IndexedSeq[StepRequest]
   )
   case class StepRequest(index: Int, text: String, dataTableRows: List[String])
   def log: Logger = LoggerFactory.getLogger("TestraReporter")
@@ -121,22 +121,18 @@ class JUnitReporter extends Reporter with App {
     implicit val scenarioreq: JsonFormat[ScenarioRequest] = jsonFormat6(
       ScenarioRequest
     )
-    var steps = List[StepRequest]()
-    var counter = 0;
-    event.recordedEvents.foreach {
-      case r: InfoProvided =>
-      println("here")
-        StepRequest(counter, r.message, List[String]()) -> steps
-        counter += 1
-      case _ =>
-    }
+    var counter = -1;
     val scenario = ScenarioRequest(
       projectId,
       event.suiteName,
       "Feature name generated from class name",
       event.testName,
       List[String](),
-      steps
+      event.recordedEvents.collect {
+        case a: InfoProvided =>
+          counter+=1
+          StepRequest(counter, a.message, List[String]())
+      }
     )
     println(scenario.toJson.prettyPrint)
   }
