@@ -31,22 +31,13 @@ class JUnitReporter extends Reporter with App {
   case class ExecutionResponse(id: String)
   case class ScenarioRequest(
       projectId: String,
-      featureId: String,
+      featureName: String,
       featureDescription: String,
-      nameSpace: String,
       name: String,
-      manual: Boolean,
       tags: List[String],
-      before: String,
-      after: String,
-      backkgroundSteps: List[String],
-      steps: List[StepRequest],
-      dataRows: List[String]
+      steps: List[StepRequest]
   )
-  case class StepRequest(index: Integer, cells: List[DataTableRow])
-  case class CellRequest(index: Integer, value: String)
-  case class Step(index: Integer, text: String)
-  case class DataTableRow(index: Integer, cells: List[CellRequest])
+  case class StepRequest(index: Int, text: String, dataTableRows: List[String])
   def log: Logger = LoggerFactory.getLogger("TestraReporter")
 
   var apiUrl = ""
@@ -63,11 +54,11 @@ class JUnitReporter extends Reporter with App {
         initialiseTestra
 
       case e: TestSucceeded =>
-        e.recordedEvents.foreach {
-          case r: InfoProvided =>
-            println(r.message)
-          case _ =>
-        }
+        createScenario(e)
+      // e.recordedEvents.foreach {
+      //   case r: InfoProvided =>
+      //   case _               =>
+      // }
       case _ =>
     }
   }
@@ -120,6 +111,34 @@ class JUnitReporter extends Reporter with App {
       .id
     log.info("Execution Id set to " + executionId)
 
+  }
+
+  def createScenario(event: TestSucceeded) {
+    implicit val stepreq: JsonFormat[StepRequest] = jsonFormat3(
+      StepRequest
+    )
+
+    implicit val scenarioreq: JsonFormat[ScenarioRequest] = jsonFormat6(
+      ScenarioRequest
+    )
+    var steps = List[StepRequest]()
+    var counter = 0;
+    event.recordedEvents.foreach {
+      case r: InfoProvided =>
+      println("here")
+        StepRequest(counter, r.message, List[String]()) -> steps
+        counter += 1
+      case _ =>
+    }
+    val scenario = ScenarioRequest(
+      projectId,
+      event.suiteName,
+      "Feature name generated from class name",
+      event.testName,
+      List[String](),
+      steps
+    )
+    println(scenario.toJson.prettyPrint)
   }
 
 }
