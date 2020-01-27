@@ -10,3 +10,5 @@ project/boot
 *.diff
 output/
 .DS_STORE
+.metals/
+.bloop/
