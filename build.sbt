@@ -16,7 +16,7 @@ lazy val root = (project in file("."))
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
 
     Test / testOptions += Tests.Argument("-C", "org.scalatest.tools.JUnitReporter"),
-    Test / testOptions += Tests.Argument("-DtestraApi=http://localhost:8083/api/v1"),
+    Test / testOptions += Tests.Argument("-DtestraApi=http://localhost:8083/api/v1", "-Dproject=CompanionService"),
     // testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-h", "target/test-reports"),
   )
 

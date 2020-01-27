@@ -37,6 +37,35 @@ class JUnitReporter extends Reporter with App {
       tags: List[String],
       steps: IndexedSeq[StepRequest]
   )
+  case class ScenarioResponse(
+      id: String,
+      projectId: String,
+      featureId: String,
+      featureDescription: String,
+      name: String,
+      tags: List[String],
+      steps: IndexedSeq[StepRequest]
+  )
+  case class TestResultRequest(
+      targetId: String,
+      groupId: String,
+      resultType: String,
+      status: String,
+      error: String,
+      durationInMs: Long,
+      startTime: Long,
+      endTime: Long,
+      retryCount: Int,
+      expectedToFail: Boolean,
+      attachments: List[String],
+      stepResults: IndexedSeq[StepResult]
+  )
+  case class StepResult(
+      index: Int,
+      status: String,
+      durationInMs: Long,
+      error: String
+  )
   case class StepRequest(index: Int, text: String, dataTableRows: List[String])
   def log: Logger = LoggerFactory.getLogger("TestraReporter")
 
@@ -51,20 +80,21 @@ class JUnitReporter extends Reporter with App {
           case Some(i) => apiUrl = i.asInstanceOf[String]
           case None    => println("No url found for testra")
         }
+        e.configMap.get("project") match {
+          case Some(i) => project = i.asInstanceOf[String]
+          case None    => println("No project found")
+        }
         initialiseTestra
 
       case e: TestSucceeded =>
         createScenario(e)
-      // e.recordedEvents.foreach {
-      //   case r: InfoProvided =>
-      //   case _               =>
-      // }
+      case e: TestFailed =>
+        createScenario(e)
       case _ =>
     }
   }
 
   def initialiseTestra: Unit = {
-    project = "Companion Service"
     log.info(s"Testra Url $apiUrl")
     log.info(s"Project: $project")
     getProjectId
@@ -113,28 +143,92 @@ class JUnitReporter extends Reporter with App {
 
   }
 
-  def createScenario(event: TestSucceeded) {
+  def createScenario(event: Event) {
     implicit val stepreq: JsonFormat[StepRequest] = jsonFormat3(
       StepRequest
     )
-
     implicit val scenarioreq: JsonFormat[ScenarioRequest] = jsonFormat6(
       ScenarioRequest
     )
+    implicit val scenarioreqs: JsonFormat[ScenarioResponse] = jsonFormat7(
+      ScenarioResponse
+    )
+    implicit val resultStepReq: JsonFormat[StepResult] = jsonFormat4(
+      StepResult
+    )
+    implicit val resultReq: JsonFormat[TestResultRequest] = jsonFormat12(
+      TestResultRequest
+    )
+
     var counter = -1;
     val scenario = ScenarioRequest(
       projectId,
-      event.suiteName,
-      "Feature name generated from class name",
-      event.testName,
+      if (event.isInstanceOf[TestSucceeded])
+        event.asInstanceOf[TestSucceeded].suiteName
+      else event.asInstanceOf[TestFailed].suiteName,
+      "",
+      if (event.isInstanceOf[TestSucceeded])
+        event.asInstanceOf[TestSucceeded].testName
+      else event.asInstanceOf[TestFailed].testName,
       List[String](),
-      event.recordedEvents.collect {
-        case a: InfoProvided =>
-          counter+=1
-          StepRequest(counter, a.message, List[String]())
-      }
+      if (event.isInstanceOf[TestSucceeded])
+        event.asInstanceOf[TestSucceeded].recordedEvents.collect {
+          case a: InfoProvided =>
+            counter += 1
+            StepRequest(counter, a.message, List[String]())
+        }
+      else
+        event.asInstanceOf[TestFailed].recordedEvents.collect {
+          case a: InfoProvided =>
+            counter += 1
+            StepRequest(counter, a.message, List[String]())
+        }
     )
-    println(scenario.toJson.prettyPrint)
+    var scenarioResponse = Http(
+      apiUrl + "/projects/" + projectId + "/scenarios"
+    ).postData(scenario.toJson.compactPrint)
+      .header("content-type", "application/json")
+      .asString
+      .body
+      .parseJson
+      .convertTo[ScenarioResponse]
+    log.info("SenarioId = " + scenarioResponse.id)
+    counter = -1
+    val result = TestResultRequest(
+      scenarioResponse.id,
+      scenarioResponse.featureId,
+      "SCENARIO",
+      if (event.isInstanceOf[TestFailed]) "FAILED" else "PASSED",
+      if (event.isInstanceOf[TestFailed]) event.asInstanceOf[TestFailed].message
+      else "",
+      0,
+      0,
+      0,
+      0,
+      false,
+      List[String](),
+      if (event.isInstanceOf[TestSucceeded])
+        event.asInstanceOf[TestSucceeded].recordedEvents.collect {
+          case a: InfoProvided =>
+            counter += 1
+            StepResult(counter, "PASSED", 0, "")
+        }
+      else
+        event.asInstanceOf[TestFailed].recordedEvents.collect {
+          case a: InfoProvided =>
+            counter += 1
+            StepResult(counter, if (counter == 0) "FAILED" else "PASSED", 0, "")
+        }
+    )
+    log.info(result.toJson.prettyPrint)
+    var resultResponse = Http(
+      apiUrl + "/projects/" + projectId + "/executions/" + executionId + "/results"
+    ).postData(result.toJson.compactPrint)
+      .header("content-type", "application/json")
+      .asString
+      .body
+    log.info(resultResponse)
+
   }
 
 }

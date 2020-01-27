@@ -22,4 +22,16 @@ class WordSpecTests extends WordSpec with GivenWhenThen with Matchers with Befor
     }
   }
 
+    "Stack check feature" should {
+    "stack should pop first" taggedAs (MyLovelyTags) in {
+      Given("I create a stack with two ints")
+      val stack = new Stack[Int]
+      stack.push(1)
+      stack.push(2)
+      Then("The first value is popped first")
+      stack.pop() should be(1)
+      stack.pop() should be(2)
+    }
+  }
+
 }
