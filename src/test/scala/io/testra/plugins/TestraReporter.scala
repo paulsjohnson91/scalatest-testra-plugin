@@ -73,6 +73,7 @@ class TestraReporter extends Reporter with App {
   var project = ""
   var executionId = ""
   var projectId = ""
+  var testraEnabled = false
   override def apply(event: Event): Unit = {
     event match {
       case e: RunStarting =>
@@ -84,12 +85,19 @@ class TestraReporter extends Reporter with App {
           case Some(i) => project = i.asInstanceOf[String]
           case None    => println("No project found")
         }
-        initialiseTestra
+        e.configMap.get("testra") match {
+          case Some(i) => testraEnabled = true
+          case None    => println("Testra disabled by default")
+        }
+        if (testraEnabled)
+          initialiseTestra
 
       case e: TestSucceeded =>
-        createScenario(e)
+        if (testraEnabled)
+          createScenario(e)
       case e: TestFailed =>
-        createScenario(e)
+        if (testraEnabled)
+          createScenario(e)
       case _ =>
     }
   }
