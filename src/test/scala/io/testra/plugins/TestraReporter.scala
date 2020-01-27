@@ -1,4 +1,4 @@
-package org.scalatest.tools
+package io.testra.plugins
 
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets

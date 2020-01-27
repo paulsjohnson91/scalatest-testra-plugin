@@ -15,7 +15,7 @@ lazy val root = (project in file("."))
     libraryDependencies += "io.spray" %%  "spray-json" % "1.3.4", 
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
 
-    Test / testOptions += Tests.Argument("-C", "org.scalatest.tools.TestraReporter"),
+    Test / testOptions += Tests.Argument("-C", "io.testra.plugins.TestraReporter"),
     Test / testOptions += Tests.Argument("-DtestraApi=http://localhost:8083/api/v1", "-Dproject=CompanionService"),
   )
 
