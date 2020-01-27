@@ -1,9 +1,13 @@
 import Dependencies._
 
+name := "testra_scalatest_plugin"
+version := "0.1.0"
+bintrayRepository := "testra-scalatest-plugin"
+
 ThisBuild / scalaVersion := "2.12.8"
 ThisBuild / version := "0.1.0-SNAPSHOT"
-ThisBuild / organization := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / organization := "io.testra"
+ThisBuild / organizationName := "testra"
 
 lazy val root = (project in file("."))
   .settings(
@@ -14,8 +18,7 @@ lazy val root = (project in file("."))
     // libraryDependencies += "net.liftweb" %% "lift-json" % "3.4.0",
     libraryDependencies += "io.spray" %%  "spray-json" % "1.3.4", 
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
-
-    Test / testOptions += Tests.Argument("-C", "io.testra.plugins.TestraReporter"),
-    // Test / testOptions += Tests.Argument("-Dtestra=true","-DtestraApi=http://localhost:8083/api/v1", "-Dproject=CompanionService"),
+    Test / testOptions += Tests.Argument("-C", "io.testra.testra_scalatest_plugin.TestraReporter"),
+    licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
+     Test / testOptions += Tests.Argument("-Dtestra=true","-DtestraApi=http://localhost:8083/api/v1", "-Dproject=CompanionService"),
   )
-

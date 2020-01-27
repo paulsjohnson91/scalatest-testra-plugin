@@ -1,14 +1,14 @@
-package io.testra.plugins
+package io.testra.testra_scalatest_plugin
 
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 import org.scalatest._
 import org.scalatest.events._
-import scalaj.http.{HttpResponse, Http}
-import spray.json._
-import DefaultJsonProtocol._
 import org.slf4j._
+import scalaj.http.{Http, HttpResponse}
+import spray.json.DefaultJsonProtocol._
+import spray.json._
 
 class TestraReporter extends Reporter with App {
   case class Project(
