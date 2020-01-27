@@ -10,7 +10,7 @@ import spray.json._
 import DefaultJsonProtocol._
 import org.slf4j._
 
-class JUnitReporter extends Reporter with App {
+class TestraReporter extends Reporter with App {
   case class Project(
       id: String,
       name: String,
