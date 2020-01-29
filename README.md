@@ -40,3 +40,4 @@ Example in build.sbt
 Running gradle scalaTestRunner or sbt test will now submit your test results to the project name ScalaTestProject
 
 Please see [here](https://github.com/paulsjohnson91/testra-k8s) for deployment yamls for testra
+Or the testra-api-deployment-dc folder for a docker-compose for both the api and ui

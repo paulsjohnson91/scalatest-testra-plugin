@@ -1,0 +1,36 @@
+testra_web:
+    image: testra/testra-web:0.2.1
+    container_name: testra-web
+    restart: always
+    ports:
+    - 80:80
+    links:
+    - testra_api
+    environment:
+    - TESTRA_API_URL=http://localhost:8083/api/v1
+
+testra_api:
+    image: testra/testra-api:1.0-m1
+    container_name: testra-api
+    restart: always
+    ports:
+      - 8083:8080
+    links:
+      - mongo
+
+mongo:
+    image: vepo/mongo
+    container_name: testra-mongo
+    restart: always
+    ports:
+    - 27017:27017
+    volumes:
+    - /Users/psj03/testra/data/testra-mongo-data:/data/db
+    - /Users/psj03/testra/data/testra-mongo-bkp:/data/bkp
+    environment:
+    - AUTH=yes
+    - ADMIN_USER=admin
+    - ADMIN_PASS=admin
+    - APPLICATION_DATABASE=testra
+    - APPLICATION_USER=testra
+    - APPLICATION_PASS=password
