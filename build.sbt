@@ -19,5 +19,10 @@ lazy val root = (project in file("."))
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
     Test / testOptions += Tests.Argument("-C", "io.testra.plugins.TestraReporter"),
     licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
-     Test / testOptions += Tests.Argument("-Dtestra=true","-DtestraApi=http://localhost:8083/api/v1", "-Dproject=ScalaTestProject", "-Dhost=myhost", "-Ddomain=mydomain","-Dbranch=mybranch","-Denv=myenv", "-DbuildRef=mybuildref", "-Dtags=tags"),
+     Test / testOptions += Tests.Argument("-Dtestra=true",
+       "-DtestraApi=http://localhost:8083/api/v1",
+       "-Dproject=ScalaTestProject", "-Dhost=myhost",
+       "-Ddomain=mydomain","-Dbranch=mybranch",
+       "-Denv=myenv", "-DbuildRef=mybuildref",
+       "-Dtags=tags"),
   )
