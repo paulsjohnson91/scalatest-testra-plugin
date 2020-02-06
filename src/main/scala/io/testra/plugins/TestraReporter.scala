@@ -68,6 +68,11 @@ class TestraReporter extends Reporter with App {
       error: String
   )
   case class StepRequest(index: Int, text: String, dataTableRows: List[String])
+  type SuiteName = { val suiteName: String }
+  type TestName = { val testName: String }
+  type RecordedEvents = {
+    val recordedEvents: collection.immutable.IndexedSeq[RecordableEvent]
+  }
   def log: Logger = LoggerFactory.getLogger("TestraReporter")
 
   var apiUrl = ""
@@ -92,11 +97,13 @@ class TestraReporter extends Reporter with App {
       case e: RunStarting =>
         e.configMap.get("testraApi") match {
           case Some(i) => apiUrl = i.asInstanceOf[String]
-          case _       => {println("No url found for testra"); testraEnabled = false }
+          case _ => {
+            println("No url found for testra"); testraEnabled = false
+          }
         }
         e.configMap.get("project") match {
           case Some(i) => project = i.asInstanceOf[String]
-          case _       => {println("No Project Found"); testraEnabled = false }
+          case _       => { println("No Project Found"); testraEnabled = false }
         }
         e.configMap.get("testra") match {
           case Some(i) => testraEnabled = true
@@ -143,7 +150,7 @@ class TestraReporter extends Reporter with App {
     log.info(s"Testra Url $apiUrl")
     log.info(s"Project: $project")
     getProjectId
-    if(testraEnabled)
+    if (testraEnabled)
       createExecutionId
   }
 
@@ -154,11 +161,13 @@ class TestraReporter extends Reporter with App {
         .encode(project, StandardCharsets.UTF_8.toString)
         .replace("+", "%20")
     ).asString
-    try{
-    projectId = response.body.parseJson.convertTo[Project].id
-    log.info(s"Project ID $projectId found")
-    } catch{
-      case _: DeserializationException => {log.error("Project not found"); testraEnabled = false}
+    try {
+      projectId = response.body.parseJson.convertTo[Project].id
+      log.info(s"Project ID $projectId found")
+    } catch {
+      case _: DeserializationException => {
+        log.error("Project not found"); testraEnabled = false
+      }
     }
   }
 
@@ -180,24 +189,28 @@ class TestraReporter extends Reporter with App {
       List(tags),
       domain
     )
-    try{
-    executionId = Http(
-      apiUrl + "/projects/" + projectId + "/executions"
-    ).postData(executionRequest.toJson.compactPrint)
-      .header("content-type", "application/json")
-      .asString
-      .body
-      .parseJson
-      .convertTo[ExecutionResponse]
-      .id
-    log.info("Execution Id set to " + executionId)
+    try {
+      executionId = Http(
+        apiUrl + "/projects/" + projectId + "/executions"
+      ).postData(executionRequest.toJson.compactPrint)
+        .header("content-type", "application/json")
+        .asString
+        .body
+        .parseJson
+        .convertTo[ExecutionResponse]
+        .id
+      log.info("Execution Id set to " + executionId)
     } catch {
-      case _: Exception => {log.error("Execution creation failed"); testraEnabled = false}
+      case _: Exception => {
+        log.error("Execution creation failed"); testraEnabled = false
+      }
     }
 
   }
 
-  def createScenario(event: Event) {
+  def createScenario(
+      event: Event with SuiteName with TestName with RecordedEvents
+  ) {
     implicit val stepreq: JsonFormat[StepRequest] = jsonFormat3(
       StepRequest
     )
@@ -217,26 +230,15 @@ class TestraReporter extends Reporter with App {
     var counter = -1;
     val scenario = ScenarioRequest(
       projectId,
-      if (event.isInstanceOf[TestSucceeded])
-        event.asInstanceOf[TestSucceeded].suiteName
-      else event.asInstanceOf[TestFailed].suiteName,
+      event.suiteName,
       "",
-      if (event.isInstanceOf[TestSucceeded])
-        event.asInstanceOf[TestSucceeded].testName
-      else event.asInstanceOf[TestFailed].testName,
+      event.testName,
       List[String](),
-      if (event.isInstanceOf[TestSucceeded])
-        event.asInstanceOf[TestSucceeded].recordedEvents.collect {
-          case a: InfoProvided =>
-            counter += 1
-            StepRequest(counter, a.message, List[String]())
-        }
-      else
-        event.asInstanceOf[TestFailed].recordedEvents.collect {
-          case a: InfoProvided =>
-            counter += 1
-            StepRequest(counter, a.message, List[String]())
-        }
+      event.recordedEvents.collect {
+        case a: InfoProvided =>
+          counter += 1
+          StepRequest(counter, a.message, List[String]())
+      }
     )
     var scenarioResponse = Http(
       apiUrl + "/projects/" + projectId + "/scenarios"
