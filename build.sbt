@@ -1,7 +1,7 @@
 import Dependencies._
 
 name := "plugins"
-version := "0.1.1"
+version := "0.1.2"
 bintrayRepository := "testra-scalatest-plugin"
 
 ThisBuild / scalaVersion := "2.12.8"
